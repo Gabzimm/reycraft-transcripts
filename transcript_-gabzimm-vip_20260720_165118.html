@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transcript - 🎫-gabzimm-vip</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Whitney', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            background: #313338;
+            color: #dbdee1;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0;
+        }
+        
+        .header {
+            background: #1e1f22;
+            padding: 20px;
+            border-bottom: 1px solid #1e1f22;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-info h1 {
+            color: #00a8fc;
+            font-size: 20px;
+            margin-bottom: 3px;
+        }
+        
+        .header-info h2 {
+            color: #949cf7;
+            font-size: 14px;
+            font-weight: normal;
+        }
+        
+        .header-info p {
+            color: #949ba4;
+            font-size: 11px;
+            margin-top: 3px;
+        }
+        
+        .download-btn {
+            background: #5865f2;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+            text-decoration: none;
+        }
+        
+        .download-btn:hover {
+            background: #4752c4;
+            transform: scale(1.08);
+            box-shadow: 0 4px 15px rgba(88, 101, 242, 0.4);
+        }
+        
+        .download-btn:active {
+            transform: scale(0.95);
+        }
+        
+        .download-btn svg {
+            width: 18px;
+            height: 18px;
+            transition: transform 0.2s ease;
+        }
+        
+        .download-btn:hover svg {
+            transform: translateY(2px);
+        }
+        
+        .messages {
+            padding: 10px 0;
+        }
+        
+        .message-group {
+            padding: 8px 20px;
+            display: flex;
+            gap: 15px;
+            transition: background 0.15s;
+        }
+        
+        .message-group:hover {
+            background: #2e3035;
+        }
+        
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            margin-top: 5px;
+            object-fit: cover;
+        }
+        
+        .avatar-placeholder {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            margin-top: 5px;
+            background: #5865f2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        
+        .message-content {
+            flex: 1;
+            min-width: 0;
+        }
+        
+        .author-row {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            margin-bottom: 3px;
+            flex-wrap: wrap;
+        }
+        
+        .author-name {
+            font-weight: 600;
+            font-size: 15px;
+            color: #f2f3f5;
+        }
+        
+        .bot-tag {
+            background: #5865f2;
+            color: #fff;
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+        
+        .timestamp {
+            font-size: 11px;
+            color: #949ba4;
+        }
+        
+        .msg-text {
+            font-size: 15px;
+            line-height: 1.5;
+            word-wrap: break-word;
+            white-space: pre-wrap;
+            color: #dbdee1;
+        }
+        
+        .msg-embed {
+            background: #2b2d31;
+            border-left: 4px solid #5865f2;
+            border-radius: 4px;
+            padding: 10px 12px;
+            margin-top: 6px;
+        }
+        
+        .msg-embed-title {
+            color: #00a8fc;
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+        
+        .msg-embed-desc {
+            color: #dbdee1;
+            font-size: 13px;
+            line-height: 1.4;
+        }
+        
+        .msg-attachments {
+            margin-top: 5px;
+            color: #00a8fc;
+            font-size: 13px;
+        }
+        
+        .msg-attachments a {
+            color: #00a8fc;
+            text-decoration: none;
+        }
+        
+        .msg-attachments a:hover {
+            text-decoration: underline;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 30px 20px;
+            background: #1e1f22;
+            margin-top: 20px;
+            color: #949ba4;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+        
+        .divider {
+            height: 1px;
+            background: #3f4147;
+            margin: 8px 20px 8px 75px;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .message-group {
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @media (max-width: 600px) {
+            .header {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+            
+            .message-group {
+                padding: 8px 10px;
+                gap: 10px;
+            }
+            
+            .avatar, .avatar-placeholder {
+                width: 32px;
+                height: 32px;
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-info">
+                <h1>📋 Transcript do Ticket</h1>
+                <h2>#🎫-gabzimm-vip</h2>
+                <p>Gerado em: 20/07/2026 às 16:51:18</p>
+            </div>
+            <a class="download-btn" href="#" download="transcript_-gabzimm-vip_20260720_165118.html" onclick="downloadTranscript()" title="Baixar transcript">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                Baixar
+            </a>
+        </div>
+        <div class="messages">
+<div class="message-group">
+            <img class="avatar" src="https://cdn.discordapp.com/avatars/1474691350401384468/a_14f3ac05b5eef2983de2bfcac582781f.gif?size=1024" alt="WaveX" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" loading="lazy">
+            <div class="avatar-placeholder" style="display:none;">W</div>
+            <div class="message-content">
+                <div class="author-row">
+                    <span class="author-name">WaveX</span>
+                    <span class="bot-tag">BOT</span>
+                    <span class="timestamp">20/07/2026 19:50</span>
+                </div>
+                <div class="msg-text">📝 **Descreva sua solicitação abaixo:**</div>
+            </div>
+        </div>
+<div class="divider"></div>
+<div class="message-group">
+            <img class="avatar" src="https://cdn.discordapp.com/avatars/1213819385576300595/cae22e236ee9a9c356e0f40e37949af4.png?size=1024" alt="gabzimm." onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" loading="lazy">
+            <div class="avatar-placeholder" style="display:none;">G</div>
+            <div class="message-content">
+                <div class="author-row">
+                    <span class="author-name">gabzimm.</span>
+                    <span class="timestamp">20/07/2026 19:51</span>
+                </div>
+                <div class="msg-text">pintos pq vc nao quer?</div>
+            </div>
+        </div>
+<div class="message-group">
+            <div style="width:40px;flex-shrink:0;"></div>
+            <div class="message-content">
+                <div class="msg-text">!help</div>
+            </div>
+        </div>
+<div class="divider"></div>
+<div class="message-group">
+            <img class="avatar" src="https://cdn.discordapp.com/avatars/1474691350401384468/a_14f3ac05b5eef2983de2bfcac582781f.gif?size=1024" alt="WaveX" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" loading="lazy">
+            <div class="avatar-placeholder" style="display:none;">W</div>
+            <div class="message-content">
+                <div class="author-row">
+                    <span class="author-name">WaveX</span>
+                    <span class="bot-tag">BOT</span>
+                    <span class="timestamp">20/07/2026 19:51</span>
+                </div>
+                <div class="msg-embed">
+                    <div class="msg-embed-title">🤖 Comandos do Bot - Reycraft HC</div>
+                    <div class="msg-embed-desc">Lista de todos os comandos disponíveis:</div>
+                </div>
+            </div>
+        </div>
+<div class="divider"></div>
+<div class="message-group">
+            <img class="avatar" src="https://cdn.discordapp.com/avatars/1463285428718276619/a_14f3ac05b5eef2983de2bfcac582781f.gif?size=1024" alt="𝐖𝐚𝐯𝐞𝐗" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" loading="lazy">
+            <div class="avatar-placeholder" style="display:none;">𝐖</div>
+            <div class="message-content">
+                <div class="author-row">
+                    <span class="author-name">𝐖𝐚𝐯𝐞𝐗</span>
+                    <span class="bot-tag">BOT</span>
+                    <span class="timestamp">20/07/2026 19:51</span>
+                </div>
+                <div class="msg-embed">
+                    <div class="msg-embed-title">🤖 Comandos do Bot</div>
+                    <div class="msg-embed-desc">Lista de todos os comandos disponíveis:</div>
+                </div>
+            </div>
+        </div>
+<div class="divider"></div>
+<div class="message-group">
+            <img class="avatar" src="https://cdn.discordapp.com/avatars/1213819385576300595/cae22e236ee9a9c356e0f40e37949af4.png?size=1024" alt="gabzimm." onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" loading="lazy">
+            <div class="avatar-placeholder" style="display:none;">G</div>
+            <div class="message-content">
+                <div class="author-row">
+                    <span class="author-name">gabzimm.</span>
+                    <span class="timestamp">20/07/2026 19:51</span>
+                </div>
+                <div class="msg-text">tendi</div>
+            </div>
+        </div>
+
+        </div>
+        <div class="footer">
+            <p>🔒 Ticket fechado automaticamente</p>
+            <p>Reycraft HC • Sistema de Suporte</p>
+            <p>Transcript gerado em 20/07/2026 às 16:51:18</p>
+        </div>
+    </div>
+    
+    <script>
+        function downloadTranscript() {
+            const htmlContent = document.documentElement.outerHTML;
+            const blob = new Blob(['<!DOCTYPE html>\n' + htmlContent], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'transcript_-gabzimm-vip_20260720_165118.html';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            
+            const btn = document.querySelector('.download-btn');
+            btn.style.transform = 'scale(0.9)';
+            setTimeout(() => {
+                btn.style.transform = '';
+            }, 150);
+        }
+    </script>
+</body>
+</html>
